@@ -16,15 +16,26 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from reservas.views import reserva_criar, reserva_editar, reserva_listar, reserva_remover
-from core.views import index,detalhe_reserva 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('',index,name='index'),
-    path('detalhe_reserva/<int:id>',detalhe_reserva,name='detalhe_reserva'),
+from core.views import HomeView, ReservaDetailView
 
-    path('reserva_criar/',reserva_criar,name='reserva_criar'),
-    path('reserva_listar/',reserva_listar,name='reserva_listar'),
-    path('reserva_remover/<int:id>/',reserva_remover,name='reserva_remover'),
-    path('reserva_editar/<int:id>/',reserva_editar,name='reserva_editar'),
-]
+from reservas.views import ReservasListView, ReservaCreateView, ReservaDeleteView, ReservaUpdateView
+from django.conf.urls.static import static
+from django.conf import settings
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    # path('',index,name='index'),
+    path('', HomeView.as_view(), name='index'),
+    path('reservas/detail/<int:pk>/', ReservaDetailView.as_view(), name='detalhe_reserva'),
+    # path('detalhe/<int:id>/', detalhe_reserva, name='detalhe_reserva'),
+
+
+    path('reserva/',ReservaCreateView.as_view(),name='reserva_criar'),
+    path('reserva/editar/<int:pk>/',ReservaUpdateView.as_view(), name='reserva_editar'),
+    path('reserva/remover/<int:pk>/',ReservaDeleteView.as_view(),name='reserva_remover'),
+    path('reserva/listar', ReservasListView.as_view(), name='reserva_listar'),
+
+
+
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

@@ -3,6 +3,8 @@
 {% block title %}Lista de Reservas{% endblock %}
 
 {% block content %}
+
+
 <div class="mt-5">
     <h2>Lista de Reservas</h2>
 
@@ -14,22 +16,27 @@
             </tr>
         </thead>
         <tbody>
-            {% for reserva in reservas %}
+            {% for object in object_list %}
             <tr>
-                <td>{{reserva.nome_empresa}}</td>
+                <td>{{object.nome_empresa}}</td>
                 <td>
-                    <a href="{% url 'reserva_editar' id=reserva.id %}"><i class="fas fa-edit"></i></a>
-                    <a href="{% url 'reserva_remover' id=reserva.id %}"><i class="fas fa-trash-alt"></i></a>
-                    <a href="{% url 'detalhe_reserva' id=reserva.id %}"><i class="fas fa-search"></i></a>
+                    <a style=" color: rgb(245, 145, 236)" href="{% url 'reserva_editar' pk=object.pk %}"><i class="fas fa-edit"></i></a>
+                    <a style=" color: rgb(245, 145, 236)" href="{% url 'reserva_remover' pk=object.pk %}"><i class="fas fa-trash-alt"></i></a>
+                    <a style=" color: rgb(245, 145, 236)" href="{% url 'detalhe_reserva' pk=object.pk %}"><i class="fas fa-search"></i></a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">
+                    <p>Não existem reservas cadastradas.</p>
                 </td>
             </tr>
             {% endfor %}
-            <!-- Adicione mais linhas como essas para gerar mais dados -->
         </tbody>
     </table>
 
     <div class="mb-3">
-        <a href="{% url 'reserva_criar' %}" class="btn btn-primary">Adicionar Novo</a>
+        <a style=" background-color: rgb(245, 145, 236)" href="{% url 'reserva_criar' %}" class="btn ">Adicionar Novo</a>
     </div>
 </div>
 {% endblock %}

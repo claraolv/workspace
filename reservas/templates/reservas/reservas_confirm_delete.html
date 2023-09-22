@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Cadastro de Reservas
+{% endblock %}
+
+{% block content %}
+  <div class="mt-5">
+    <h2>Formulário para exclusão de reserva</h2>
+    <form method="post">
+        <section class="form container-fluid p-5x">
+        {% csrf_token %}
+          <p> Confirma a remoção da reserva "{{ object.nome_empresa }}"?</p>
+          {{ form }}
+      </section>
+        <button type="submit">
+          Confirmar
+        </button>
+      </form>
+    
+  </div>
+{% endblock %}
