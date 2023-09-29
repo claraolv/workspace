@@ -1,20 +1,20 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  Cadastro de Reservas
+  Cadastro de Stands
 {% endblock %}
 
 {% block content %}
   <div class="mt-5">
-    <h2>Formulário para exclusão de reserva</h2>
+    <h2>Formulário para exclusão de Stands</h2>
     <form method="post">
         <section class="form container-fluid p-5x">
         {% csrf_token %}
-          <p> Confirma a remoção da reserva "{{ object.nome_empresa }}"?</p>
+          <p> Confirma a remoção do Stand "{{ object.localizacao }}"?</p>
           {{ form }}
       </section>
-      <button class="text-white btn btn-primary" style="background-color: rgb(182, 46, 98); border: none" type="submit">
-        Confirmar
+        <button class="text-white btn btn-primary" style="background-color: rgb(182, 46, 98); border: none" type="submit">
+          Confirmar
         </button>
       </form>
     

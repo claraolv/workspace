@@ -17,16 +17,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from core.views import HomeView, ReservaDetailView
+from core.views import HomeView, StandDetailView 
 
-from reservas.views import ReservasListView, ReservaCreateView, ReservaDeleteView, ReservaUpdateView
+from reservas.views import ReservasListView, ReservaCreateView, ReservaDeleteView, ReservaUpdateView , ReservasListView
+from stand.views import StandCreateView, StandDeleteView, StandUpdateView,StandListView
 from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    # path('',index,name='index'),
+  
     path('', HomeView.as_view(), name='index'),
     path('reservas/detail/<int:pk>/', ReservaDetailView.as_view(), name='detalhe_reserva'),
+     path('stand/detail/<int:pk>/', StandDetailView.as_view(), name='detalhestand_stand'),
     # path('detalhe/<int:id>/', detalhe_reserva, name='detalhe_reserva'),
 
 
@@ -34,6 +37,12 @@ urlpatterns = [
     path('reserva/editar/<int:pk>/',ReservaUpdateView.as_view(), name='reserva_editar'),
     path('reserva/remover/<int:pk>/',ReservaDeleteView.as_view(),name='reserva_remover'),
     path('reserva/listar', ReservasListView.as_view(), name='reserva_listar'),
+
+    
+    path('stand/',StandCreateView.as_view(),name='stand_criar'),
+    path('stand/editar/<int:pk>/',StandUpdateView.as_view(), name='stand_editar'),
+    path('stand/remover/<int:pk>/',StandDeleteView.as_view(),name='stand_remover'),
+    path('stand/listar', StandListView.as_view(), name='stand_listar')
 
 
 

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block content %}
+<div class="mt-5">
+
+    <h2>Formulário para Cadastro de Stands</h2>
+    {% csrf_token %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="nome">localização</label>
+            {{form.localizacao}}
+        
+        </div>
+
+        <div class="form-group">
+            <label for="nome">valor</label>
+            {{form.valor}}
+        
+        </div>
+
+        <button style="background-color: rgb(182, 46, 98)" type="submit" class="btn text-white ">Enviar</button>
+      </form>
+</div>      
+{% endblock %}
